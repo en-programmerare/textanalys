@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Textanalysator</title>
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Breathe-accessories-text-editor.svg/128px-Breathe-accessories-text-editor.svg.png" type="image/png">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="allt">
+            <textarea id="texten" placeholder="Text här..." rows=30 cols=100></textarea><br>
+            <button type="button" id="knapp">Analysera texten</button><br>
+            LIX: <output id="lix">-</output> | Det motsvarar <output id="texttyp">-</output>.
+            <p>
+                <output id="antalOrd">-</output> ord identifierades. <button type="button" id="listaOrdKnapp" title="Lista orden">&gt;</button><br>
+                Ordvariation: <output id="ordvariation">-</output><br>
+                <output id="orden"></output><br>
+                <output id="antalLangaOrd">-</output> långa ord (&gt;6 bokstäver) identifierades.<br>
+                Genomsnittligt antal ord per mening: <output id="o/m">-</output><br>
+                Andel långa ord: <output id="l%">-</output>
+            </p>
+            <p>
+                <output id="antalMeningar">-</output> meningar identifierades. <button type="button" id="listaMeningKnapp" title="Lista meningarna">&gt;</button><br>
+                <output id="meningar"></output>
+            </p>
+        </div>
+        <script src="skript.js"></script>
+    </body>
+</html>
