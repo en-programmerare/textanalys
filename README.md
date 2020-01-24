@@ -7,4 +7,5 @@ Följande funktioner återfinns:
 * LIX-värde (läsbarhetsindex)
 * Ordvariationsberäkning
 * Frekvensordlista
+
 För att använda verktyget måste man först klistra in texten och klicka på knappen "Beräkna".
