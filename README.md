@@ -2,7 +2,7 @@
 Detta verktyg analyserar din text för maximal läsbarhet och ordvariation. På så sätt blir både läsbar och intressant.
 Gå in på https://en-programmerare.github.io/textanalys/ för att börja använda verktyget.
 
-##Funktioner
+## Funktioner
 Följande funktioner återfinns:
 * LIX-värde (läsbarhetsindex)
 * Ordvariationsberäkning
