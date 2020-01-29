@@ -11,51 +11,43 @@
             var ordnadeOrdForeteelser = [];
             var attRadera = [];
             var forskjutning = 0;
-            document.getElementById("knapp").addEventListener("click", beräkna);
+            document.getElementById("knapp").addEventListener("click", berakna);
             document.getElementById("listaOrdKnapp").addEventListener("click", visaOrd);
             document.getElementById("listaMeningKnapp").addEventListener("click", visaMening);
             //
             var extra = location.href.substring(location.href.indexOf('?') + 1, location.href.length);
             if(extra !== location.href) {
                 document.getElementById("texten").innerHTML = extra;
-                beräkna();
+                berakna();
             }
             //
-            function beräkna() {
+            function berakna() {
                 text = document.getElementById("texten").value;
+                antalLangaOrd = 0;
                 meningar = text.split(/[\.\?\!]\s|\n/);
-                attRadera = [];
-                forskjutning = 0;
-                for(var m = 0; m < meningar.length; m++) {
-                    if(meningar[m] === "" || meningar[m] == undefined || meningar[m] === " ") {
-                        attRadera.push(m);
+                ord = text.split(/[\s\.\?\!\:\;\,\/\/\n]/);
+                var fm = 0;
+                var om = 0;
+                for(var m = 0; (m - fm < meningar.length) || (m - om < ord.length); m++) {
+                    if(m - fm < meningar.length) {
+                        if(meningar[m- fm] === "" || meningar[m - fm] === undefined || meningar[m - fm] === " ") {
+                            meningar.splice(m - fm, 1);
+                            fm++;
+                        }
                     }
-                }
-                for(var i of attRadera) {
-                    meningar.splice(i - forskjutning, 1);
-                    forskjutning++;
+                    if(m - om < ord.length) {
+                        ord[m - om] = ord[m - om].replace(/[\"”\(\)\[\]\{\}\–]/g, "");
+                        if(ord[m - om] === " " || ord[m - om] === "" || ord[m - om] === undefined) {
+                            ord.splice(m - om, 1);
+                            om++;
+                        }
+                        if(ord[m - om].length > 6) {
+                            antalLangaOrd++;
+                        }
+                    }
                 }
                 antalMeningar = meningar.length;
-                ord = text.split(/[\s\.\?\!\:\;\,\/\n]/);
-                attRadera = [];
-                forskjutning = 0;
-                for(var o = 0; o < ord.length; o++) {
-                    ord[o] = ord[o].replace(/[\"”\(\)\[\]\{\}\–]/g, "");
-                    if(ord[o] === " " || ord[o] === "" || ord[o] == undefined) {
-                        attRadera.push(o);
-                    }
-                }
-                for(var i of attRadera) {
-                    ord.splice(i - forskjutning, 1);
-                    forskjutning++;
-                }
                 antalOrd = ord.length;
-                antalLangaOrd = 0;
-                for(var or of ord) {
-                    if(or.length > 6) {
-                        antalLangaOrd++;
-                    }
-                }
                 lix = (antalOrd / antalMeningar) + ((antalLangaOrd * 100) / antalOrd);
                 document.getElementById("lix").innerHTML = lix;
                 document.getElementById("meningar").innerHTML = "";
@@ -100,9 +92,11 @@
                     document.getElementById("listaMeningKnapp").addEventListener("click", doljMening);
                     document.getElementById("listaMeningKnapp").innerHTML = "&lt;";
                     document.getElementById("listaMeningKnapp").title = "Dölj listan med meningar";
+                    var visningMeningar = "";
                     for(mening of meningar) {
-                        document.getElementById("meningar").innerHTML = document.getElementById("meningar").innerHTML + mening + "<br>--<br>"; 
+                        visningMeningar = visningMeningar  + mening + "<br>--<br>"; 
                     }
+                    document.getElementById("meningar").innerHTML = visningMeningar;
                 }
             }
             function doljMening() {
@@ -145,10 +139,11 @@
                     document.getElementById("listaOrdKnapp").innerHTML = "&lt;";
                     document.getElementById("listaOrdKnapp").title = "Dölj listan med ord";
                     document.getElementById("orden").innerHTML = "";
+                    var visaOrd = 0;
                     for(or of ordnadeOrd) {
-                        document.getElementById("orden").innerHTML = document.getElementById("orden").innerHTML + or + ": " + ordnadeOrdForeteelser[ordnadeOrd.indexOf(or)] + "<br>";
+                        visaOrd = visaOrd + or + ": " + ordnadeOrdForeteelser[ordnadeOrd.indexOf(or)] + "<br>";
                     }
-                    document.getElementById("orden").innerHTML = document.getElementById("orden").innerHTML + "<br>";
+                    document.getElementById("orden").innerHTML = visaOrd + "<br>";
                 }
             }
             function doljOrd() {
