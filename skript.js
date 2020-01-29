@@ -139,7 +139,7 @@
                     document.getElementById("listaOrdKnapp").innerHTML = "&lt;";
                     document.getElementById("listaOrdKnapp").title = "Dölj listan med ord";
                     document.getElementById("orden").innerHTML = "";
-                    var visaOrd = 0;
+                    var visaOrd = "";
                     for(or of ordnadeOrd) {
                         visaOrd = visaOrd + or + ": " + ordnadeOrdForeteelser[ordnadeOrd.indexOf(or)] + "<br>";
                     }
