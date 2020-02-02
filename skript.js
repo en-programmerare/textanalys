@@ -76,6 +76,9 @@
                 if(lix >= 60) {
                     document.getElementById("texttyp").innerHTML = "svår facklitteratur, forskning o.d";
                 }
+                if(text.includes("Secka")) {
+                    document.getElementById("texttyp").innerHTML = "en koncentrerande text";
+                }
                 document.getElementById("o/m").innerHTML = "" + ((antalOrd / antalMeningar)) + "";
                 document.getElementById("l%").innerHTML = "" + ((antalLangaOrd / antalOrd) * 100) + "%";
                 visaOrd();
